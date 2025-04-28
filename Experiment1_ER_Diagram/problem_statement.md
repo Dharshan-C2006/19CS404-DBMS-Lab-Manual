@@ -48,25 +48,55 @@ Design a database for patient management, appointments, medical records, and bil
 # ER Diagram Submission - Student Name
 
 ## Scenario Chosen:
-University / Hospital (choose one)
+University 
 
 ## ER Diagram:
-![ER Diagram](er_diagram.png)
+
+![Screenshot 2025-04-28 135902](https://github.com/user-attachments/assets/8d70faae-a8c7-4102-8039-3b80951253bc)
 
 ## Entities and Attributes:
-- Entity1: Attributes
-- Entity2: Attributes
+- Department: Dept ID,Dept Name
+- Student: Reg No,Name,Date of Birth,Email,Phone No,Dept Name,Program Name
+- Course:Course ID,Course Name,Program Name,Credits,Lab/Theory
+- Professor:Teacher ID,Name,Phone No,Course ID
+- Prerequisite:Prerequisite Course ID,Prerequisite Course Name,Course Name
+
 ...
 
 ## Relationships and Constraints:
-- Relationship1 (Cardinality, Participation)
-- Relationship2 (Cardinality, Participation)
+- Admission (Many-to-One, Student-Department)
+- Enrollment (Many-to-Many, Student-Course)
+- Taught by (One-to-Many,Professor-Course)
+- Before Enrollment (One-to-Many,Course-Prerequisite)
 ...
 
-## Extension (Prerequisite / Billing):
-- Explain how you modeled prerequisites or billing.
+## Extension (Prerequisite):
+
+- Each Course can have zero or more prerequisites.
+- A Prerequisite Course itself must exist in the Course entity.
+- The Prerequisite entity acts almost like a self-referencing relationship:
+- Both course_id and prerequisite_course_id come from the same Course table.
+- The relation Before Enrollment enforces that the prerequisite must be satisfied before a student enrolls in the course.
+- Both course_id and prerequisite_course_id are foreign keys referencing the Course table.
+- Together they form a composite primary key to ensure uniqueness (no duplicate prerequisites).
 
 ## Design Choices:
-Brief explanation of why you chose certain entities, relationships, and assumptions
+
+### Entities
+
+- Department : Chosen because departments organize students and courses into academic units.
+- Student : Central entity; students need to be tracked individually for admissions, enrollments, and personal information.
+- Course : Necessary to represent the subjects or classes students enroll in.
+- Professor : Needed to manage which faculty teaches which course. 
+- Prerequisite : Modeled as a separate entity to manage the complex dependency between courses.
+
+### Relationships
+
+- Admission (Student - Department):Captures the student's assignment to an academic department at the time of admission.
+- Enrollment (Student - Course):Models the many-to-many relationship because students can take multiple courses and courses have many students.
+- Taught by (Professor - Course):Needed because a professor can teach multiple courses.
+- Before Enrollment (Course - Prerequisite):Allows tracking of course dependencies, ensuring proper academic progression.
 
 ## RESULT
+
+The Given ER Diagram is done and the output is verified.
