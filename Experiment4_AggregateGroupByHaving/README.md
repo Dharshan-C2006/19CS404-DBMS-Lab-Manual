@@ -38,123 +38,206 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+What is the average dosage prescribed for each medication?
+
+Sample tablePrescriptions Table
 
 ```sql
--- Paste your SQL code below for Question 1
+select Medication,Avg(Dosage) as AvgDosage 
+from Prescriptions
+group by Medication;
 ```
 
 **Output:**
 
-![Output1](output.png)
+![Screenshot 2025-05-07 192315](https://github.com/user-attachments/assets/b241b94d-8719-4461-9df7-87b16f7b52c3)
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+How many male and female doctors are there in each medical specialty?
+
+Sample table:Doctors Table
 
 ```sql
--- Paste your SQL code below for Question 2
+select Specialty,Gender,Count(*) as TotalDoctors
+from Doctors
+group by Specialty,Gender;
 ```
 
 **Output:**
 
-![Output2](output.png)
+![Screenshot 2025-05-07 192328](https://github.com/user-attachments/assets/e3c2a59c-2668-45d8-801c-b1c6e42cb107)
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+How many medical records are there for each patient?
+
+Sample table:MedicalRecords Table
 
 ```sql
--- Paste your SQL code below for Question 3
+select PatientID,count(*) as TotalRecords
+from MedicalRecords
+group by PatientID;
 ```
 
 **Output:**
 
-![Output3](output.png)
+![Screenshot 2025-05-07 192342](https://github.com/user-attachments/assets/a03fdad1-bde1-4dfb-9f7a-70aa34fc9c20)
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to count the number of customers. Return number of customers.
+
+Sample table: customer
+
+customer_id |   cust_name    |    city    | grade | salesman_id 
+
+-------------+----------------+------------+-------+-------------
+
+        3002 | Nick Rimando   | New York   |   100 |        5001
+
+        3007 | Brad Davis     | New York   |   200 |        5001
+
+        3005 | Graham Zusi    | California |   200 |        5002
 
 ```sql
--- Paste your SQL code below for Question 4
+select count(*) as COUNT from customer;
 ```
 
 **Output:**
 
-![Output4](output.png)
+![Screenshot 2025-05-07 192354](https://github.com/user-attachments/assets/f1a61176-b400-4d45-bd0e-be3933c861e7)
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to find the youngest employee in the company?
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
 
 ```sql
--- Paste your SQL code below for Question 5
+select name as Employee_Name,
+age as Age
+from employee
+order by age 
+limit 1;
 ```
 
 **Output:**
 
-![Output5](output.png)
+![Screenshot 2025-05-07 192406](https://github.com/user-attachments/assets/66116f8c-8392-489a-8f66-9a3e49a5ff4b)
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to find the total amount of fruits with a unit type of 'LB'.
+
+Note: Inventory attribute contains amount of fruits
+
+Table: fruits
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+unit        TEXT
+inventory   INTEGER
+price       REAL
 
 ```sql
--- Paste your SQL code below for Question 6
+select sum(inventory) as total
+from fruits where unit='LB';
 ```
 
 **Output:**
 
-![Output6](output.png)
+![Screenshot 2025-05-07 192419](https://github.com/user-attachments/assets/3f5180ac-e27d-4757-9d72-7419fd83996a)
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to find the number of employees whose age is greater than 32.
+
+Sample table: employee
+
 
 ```sql
--- Paste your SQL code below for Question 7
+select count(*) as COUNT
+from employee where age>32;
 ```
 
 **Output:**
 
-![Output7](output.png)
+
+![Screenshot 2025-05-07 192431](https://github.com/user-attachments/assets/d6e03af5-1758-4df9-a27b-541868cb2dd0)
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write the SQL query that achieves the grouping of data by occupation, calculates the average work hours for each occupation, and includes only those occupations where the average work hour falls between 10 and 12.
+
+Sample table: employee1
 
 ```sql
--- Paste your SQL code below for Question 8
+select occupation ,AVG(workhour)
+from employee1
+group by occupation
+having avg(workhour) between 10 and 12;
 ```
 
 **Output:**
 
-![Output8](output.png)
+![Screenshot 2025-05-07 192443](https://github.com/user-attachments/assets/4b290117-a997-42eb-947f-60fbe4edb662)
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write the SQL query that achieves the grouping of data by age intervals using the expression (age/5)5, calculates the average age for each group, and excludes groups where the average age is not less than 24.
+
+Sample table: customer1
 
 ```sql
--- Paste your SQL code below for Question 9
+select (age/5)*5 as age_group,
+AVG(age) 
+from customer1
+group by age_group
+having AVG(age)<24;
 ```
 
 **Output:**
 
-![Output9](output.png)
+![Screenshot 2025-05-07 192454](https://github.com/user-attachments/assets/7389d64e-7cd1-4267-b82a-7991414c8dff)
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write an SQL query that groups the customer data into 5-year age intervals, calculates the minimum salary for each group, and excludes groups where the minimum salary is not less than 2000.
+
+Table: customer1
 
 ```sql
--- Paste your SQL code below for Question 10
+select (age/5)*5 as age_group,
+MIN(salary)
+from customer1
+group by age_group 
+having min(salary)<2000
+;
 ```
 
 **Output:**
 
-![Output10](output.png)
+
+![Screenshot 2025-05-07 192517](https://github.com/user-attachments/assets/76375a3b-571c-4da4-99fc-7906245f04a9)
 
 
 ## RESULT
